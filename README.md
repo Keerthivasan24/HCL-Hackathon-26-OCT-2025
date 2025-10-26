@@ -1,39 +1,31 @@
-SMART BANKING 
+SMARTBANK 
 
-User Registration Module — Angular + FastAPI + MySQL
+A demo-ready banking application built with FastAPI (Python) for the backend and Angular for the frontend. It supports user registration, KYC verification, and account creation with proper database normalization and audit-friendly design.
 
-current-Progress 
+Components
+RegisterComponent → user signup form
 
-- User Registration Form (Angular)
-- Form validation (required fields, email format, etc.)
-- API Integration with FastAPI using HTTP POST
-- MySQL table (`users`) to store registration details
-- CORS-enabled backend for Angular communication
+KycComponent → Aadhaar, PAN, and file upload
 
-Yet to work : 
-JWT authentication 
-password hashing 
+AccountCreateComponent → choose account type, enter deposit, create account
 
-DB DESIGN :
+API Integration
+Uses Angular HttpClient to call FastAPI endpoints
 
-CREATE DATABASE IF NOT EXISTS hackathon_bank;
-USE hackathon_bank;
-CREATE TABLE users (
-    user_id INT AUTO_INCREMENT PRIMARY KEY,
-    fullname VARCHAR(100) NOT NULL,
-    email_id VARCHAR(150) NOT NULL UNIQUE,
-    password VARCHAR(255) NOT NULL,
-    place VARCHAR(100),
-    location VARCHAR(100),
-    state VARCHAR(100)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-SHOW TABLES;
-DESCRIBE users;
-USE hackathon_bank;
+Handles validation and error messages
 
-ALTER TABLE users
-ADD COLUMN kyc_document VARCHAR(255);
+Redirects after successful actions
 
+How to Run
 
+**Backend**
+cd backend
+python -m venv backendvenv
+backendvenv\Scripts\activate  
+pip install -r requirements.txt
+uvicorn main:app --reload
 
-
+**Frontend**
+cd frontend
+npm install
+ng serve
