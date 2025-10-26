@@ -1,0 +1,347 @@
+// Modern Registration Form Styles
+.register-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.register-card {
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+  }
+}
+
+.register-header {
+  text-align: center;
+  margin-bottom: 30px;
+
+  h2 {
+    color: #2d3748;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    letter-spacing: -0.5px;
+  }
+
+  p {
+    color: #718096;
+    font-size: 16px;
+    margin: 0;
+    font-weight: 400;
+  }
+}
+
+// Success Message
+.success-message {
+  background: linear-gradient(135deg, #48bb78, #38a169);
+  color: white;
+  padding: 20px;
+  border-radius: 12px;
+  text-align: center;
+  margin-bottom: 20px;
+  animation: slideIn 0.3s ease-out;
+
+  .success-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+
+  p {
+    margin: 0 0 8px 0;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .redirect-text {
+    font-size: 14px;
+    opacity: 0.9;
+    font-style: italic;
+  }
+}
+
+// Error Message
+.error-message {
+  background: linear-gradient(135deg, #f56565, #e53e3e);
+  color: white;
+  padding: 16px 20px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  animation: slideIn 0.3s ease-out;
+  position: relative;
+
+  .error-icon {
+    font-size: 20px;
+    margin-right: 12px;
+    font-weight: bold;
+  }
+
+  p {
+    margin: 0;
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .close-btn {
+    font-size: 20px;
+    font-weight: bold;
+    opacity: 0.8;
+    transition: opacity 0.2s;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
+}
+
+// Form Styles
+.register-form {
+  .form-group {
+    margin-bottom: 20px;
+
+    label {
+      display: block;
+      margin-bottom: 6px;
+      color: #2d3748;
+      font-weight: 600;
+      font-size: 14px;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 2px solid #e2e8f0;
+      border-radius: 10px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      background: #f7fafc;
+      box-sizing: border-box;
+
+      &:focus {
+        outline: none;
+        border-color: #667eea;
+        background: white;
+        box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+      }
+
+      &.error {
+        border-color: #f56565;
+        background: #fed7d7;
+      }
+
+      &::placeholder {
+        color: #a0aec0;
+      }
+    }
+
+    .password-hint {
+      color: #718096;
+      font-size: 12px;
+      margin-top: 4px;
+      display: block;
+    }
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+}
+
+// File Upload Styles
+.file-upload {
+  position: relative;
+
+  .file-input {
+    position: absolute;
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+
+  .file-label {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border: 2px dashed #cbd5e0;
+    border-radius: 10px;
+    background: #f7fafc;
+    cursor: pointer;
+    transition: all 0.3s ease;
+
+    &:hover {
+      border-color: #667eea;
+      background: #edf2f7;
+    }
+
+    .file-icon {
+      font-size: 20px;
+      margin-right: 12px;
+    }
+
+    .file-text {
+      color: #4a5568;
+      font-size: 14px;
+      font-weight: 500;
+    }
+  }
+}
+
+// Button Styles
+.register-btn {
+  width: 100%;
+  padding: 16px;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 10px;
+  position: relative;
+  overflow: hidden;
+
+  &:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(102, 126, 234, 0.3);
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
+
+  &:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  &.loading {
+    background: linear-gradient(135deg, #a0aec0, #718096);
+  }
+
+  .loading-spinner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+
+    .spinner {
+      width: 16px;
+      height: 16px;
+      border: 2px solid rgba(255, 255, 255, 0.3);
+      border-top: 2px solid white;
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+  }
+}
+
+// Login Link
+.login-link {
+  text-align: center;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid #e2e8f0;
+
+  p {
+    color: #718096;
+    font-size: 14px;
+    margin: 0;
+
+    a {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s ease;
+
+      &:hover {
+        color: #764ba2;
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// Animations
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .register-container {
+    padding: 10px;
+  }
+
+  .register-card {
+    padding: 24px;
+    border-radius: 16px;
+  }
+
+  .register-header h2 {
+    font-size: 24px;
+  }
+
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+  .form-group {
+    margin-bottom: 16px;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-card {
+    padding: 20px;
+  }
+
+  .register-header h2 {
+    font-size: 22px;
+  }
+
+  .form-input {
+    font-size: 16px; // Prevents zoom on iOS
+  }
+}
+

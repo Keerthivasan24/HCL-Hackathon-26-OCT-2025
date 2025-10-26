@@ -1,0 +1,152 @@
+<div class="account-create-container">
+    <div class="account-create-card">
+        <!-- Header -->
+        <div class="account-header">
+            <button class="back-btn" (click)="goBack()">
+                <span class="back-icon">←</span>
+                Back to Home
+            </button>
+            <div class="header-content">
+                <h1>Create Bank Account</h1>
+                <p>Open your new bank account with SmartBank</p>
+            </div>
+        </div>
+
+        <!-- Success Message -->
+        <div *ngIf="showSuccessMessage" class="success-message">
+            <div class="success-icon">✓</div>
+            <h3>Account Created Successfully!</h3>
+            <p>{{ successMessage }}</p>
+
+            <div *ngIf="createdAccount" class="account-details">
+                <h4>Account Details:</h4>
+                <div class="detail-item">
+                    <span class="label">Account Number:</span>
+                    <span class="value">{{ createdAccount.account_number }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Account Type:</span>
+                    <span class="value">{{ createdAccount.account_type }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Initial Deposit:</span>
+                    <span class="value">₹{{ createdAccount.initial_deposit }}</span>
+                </div>
+                <div class="detail-item">
+                    <span class="label">Current Balance:</span>
+                    <span class="value">₹{{ createdAccount.total_balance }}</span>
+                </div>
+            </div>
+
+            <p class="redirect-text">Redirecting to home page...</p>
+        </div>
+
+        <!-- Error Message -->
+        <div *ngIf="errorMessage" class="error-message" (click)="clearError()">
+            <div class="error-icon">⚠</div>
+            <p>{{ errorMessage }}</p>
+            <span class="close-btn">×</span>
+        </div>
+
+        <!-- Account Creation Form -->
+        <form *ngIf="!showSuccessMessage" (ngSubmit)="onSubmit()" class="account-form">
+            <!-- Account Type Section -->
+            <div class="form-section">
+                <h3 class="section-title">
+                    <span class="section-icon">🏦</span>
+                    Account Type
+                </h3>
+
+                <div class="account-type-grid">
+                    <div class="account-type-option" [class.selected]="accountType === 'Savings'"
+                        (click)="accountType = 'Savings'">
+                        <div class="type-icon"></div>
+                        <h4>Savings Account</h4>
+                        <p>Perfect for personal banking with interest on deposits</p>
+                        <ul>
+                            <li>4.5% interest rate</li>
+                            <li>No minimum balance</li>
+                            <li>Free online banking</li>
+                        </ul>
+                    </div>
+
+                    <div class="account-type-option" [class.selected]="accountType === 'Current'"
+                        (click)="accountType = 'Current'">
+                        <div class="type-icon">💼</div>
+                        <h4>Current Account</h4>
+                        <p>Ideal for business transactions and frequent operations</p>
+                        <ul>
+                            <li>Unlimited transactions</li>
+                            <li>Overdraft facility</li>
+                            <li>Business support</li>
+                        </ul>
+                    </div>
+
+                    <div class="account-type-option" [class.selected]="accountType === 'FD'"
+                        (click)="accountType = 'FD'">
+                        <div class="type-icon">📈</div>
+                        <h4>Fixed Deposit</h4>
+                        <p>Secure investment with guaranteed returns</p>
+                        <ul>
+                            <li>7.5% interest rate</li>
+                            <li>Flexible tenure</li>
+                            <li>Tax benefits</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Initial Deposit Section -->
+            <div class="form-section">
+                <h3 class="section-title">
+                    <span class="section-icon">💵</span>
+                    Initial Deposit
+                </h3>
+
+                <div class="form-group">
+                    <label for="deposit">Initial Deposit Amount *</label>
+                    <div class="amount-input">
+                        <span class="currency">₹</span>
+                        <input id="deposit" type="number" [(ngModel)]="initialDeposit" name="initialDeposit"
+                            placeholder="Enter amount" class="form-input" min="500" step="100"
+                            [class.error]="errorMessage && (!initialDeposit || initialDeposit <= 0)" />
+                    </div>
+                    <small class="field-hint">Minimum deposit: ₹500</small>
+                </div>
+
+                <!-- Quick Amount Buttons -->
+                <div class="quick-amounts">
+                    <span class="quick-label">Quick amounts:</span>
+                    <button type="button" class="quick-btn" (click)="initialDeposit = 1000">₹1,000</button>
+                    <button type="button" class="quick-btn" (click)="initialDeposit = 5000">₹5,000</button>
+                    <button type="button" class="quick-btn" (click)="initialDeposit = 10000">₹10,000</button>
+                    <button type="button" class="quick-btn" (click)="initialDeposit = 25000">₹25,000</button>
+                </div>
+            </div>
+
+            <!-- Terms and Conditions -->
+            <div class="terms-section">
+                <div class="terms-content">
+                    <h4>Terms & Conditions</h4>
+                    <ul>
+                        <li>Account will be activated immediately upon creation</li>
+                        <li>Interest will be calculated from the date of account opening</li>
+                        <li>All banking services will be available 24/7</li>
+                        <li>Account statements will be provided monthly</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-actions">
+                <button type="submit" class="create-btn" [disabled]="isLoading" [class.loading]="isLoading">
+                    <span *ngIf="!isLoading">Create Account</span>
+                    <span *ngIf="isLoading" class="loading-spinner">
+                        <div class="spinner"></div>
+                        Creating Account...
+                    </span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

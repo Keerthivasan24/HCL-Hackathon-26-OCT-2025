@@ -1,0 +1,14 @@
+<div class="auth-container">
+    <h2 *ngIf="showLogin">Login</h2>
+    <h2 *ngIf="!showLogin">Register</h2>
+
+    <!-- Login Form -->
+    <app-login *ngIf="showLogin"></app-login>
+
+    <!-- Register Form -->
+    <app-register *ngIf="!showLogin"></app-register>
+
+    <button (click)="toggleForm()">
+        {{ showLogin ? 'Need an account? Register' : 'Already have an account? Login' }}
+    </button>
+</div>

@@ -1,0 +1,679 @@
+// Profile Container
+.profile-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 1000;
+  pointer-events: none;
+  
+  * {
+    pointer-events: auto;
+  }
+}
+
+// Modern Home Page Styles
+.home-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  position: relative;
+}
+
+// Banner Section
+.banner-section {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  padding: 60px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="50" cy="10" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="10" cy="60" r="0.5" fill="rgba(255,255,255,0.05)"/><circle cx="90" cy="40" r="0.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+    opacity: 0.3;
+  }
+
+  .banner-content {
+    position: relative;
+    z-index: 1;
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .banner-title {
+    font-size: 3.5rem;
+    font-weight: 800;
+    margin: 0 0 16px 0;
+    letter-spacing: -2px;
+    text-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .banner-subtitle {
+    font-size: 1.25rem;
+    margin: 0 0 40px 0;
+    opacity: 0.9;
+    font-weight: 400;
+  }
+
+  .banner-features {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+
+    .feature-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+
+      .feature-icon {
+        font-size: 2rem;
+        margin-bottom: 4px;
+      }
+
+      span {
+        font-size: 0.9rem;
+        font-weight: 500;
+        opacity: 0.9;
+      }
+    }
+  }
+}
+
+// Main Content
+.main-content {
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.content-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+// Card Styles
+.kyc-card,
+.quick-actions-card,
+.account-summary-card,
+.security-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 24px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+
+    .card-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 16px;
+      font-size: 1.5rem;
+    }
+
+    .card-title {
+      flex: 1;
+
+      h3 {
+        margin: 0 0 4px 0;
+        font-size: 1.25rem;
+        font-weight: 700;
+        color: #2d3748;
+      }
+
+      p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #718096;
+      }
+    }
+  }
+
+  .card-content {
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        margin-right: 8px;
+
+        &.pending {
+          background: #f6ad55;
+        }
+
+        &.verified {
+          background: #48bb78;
+        }
+      }
+
+      .status-text {
+        font-size: 0.9rem;
+        color: #4a5568;
+        font-weight: 500;
+      }
+    }
+
+    .card-description {
+      margin-bottom: 20px;
+
+      p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #718096;
+        line-height: 1.5;
+      }
+    }
+
+    .card-actions {
+      .action-btn {
+        width: 100%;
+        padding: 12px 16px;
+        border: none;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+
+        &.primary {
+          background: linear-gradient(135deg, #667eea, #764ba2);
+          color: white;
+
+          &:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+          }
+        }
+
+        &.secondary {
+          background: #f7fafc;
+          color: #4a5568;
+          border: 1px solid #e2e8f0;
+
+          &:hover {
+            background: #edf2f7;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          }
+        }
+
+        .btn-icon {
+          font-size: 1rem;
+          transition: transform 0.3s ease;
+        }
+
+        &:hover .btn-icon {
+          transform: translateX(2px);
+        }
+      }
+    }
+  }
+}
+
+// KYC Card Specific Styles
+.kyc-card {
+  .card-icon {
+    background: linear-gradient(135deg, #f6ad55, #ed8936);
+  }
+
+  .kyc-icon {
+    color: white;
+  }
+
+  &.completed {
+    .card-icon {
+      background: linear-gradient(135deg, #48bb78, #38a169);
+    }
+    
+    cursor: default;
+    
+    &:hover {
+      transform: none;
+    }
+  }
+
+  &.no-action {
+    cursor: default;
+    
+    &:hover {
+      transform: none;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+  }
+}
+
+// Account Creation Card
+.account-creation-card {
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 24px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  border: 1px solid rgba(0, 0, 0, 0.05);
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  }
+
+  .card-icon {
+    background: linear-gradient(135deg, #4299e1, #3182ce);
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 16px;
+    font-size: 1.5rem;
+  }
+
+  .account-icon {
+    color: white;
+  }
+
+  .card-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+
+  .card-title {
+    flex: 1;
+
+    h3 {
+      margin: 0 0 4px 0;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: #2d3748;
+    }
+
+    p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #718096;
+    }
+  }
+
+  .card-content {
+    .status-indicator {
+      display: flex;
+      align-items: center;
+      margin-bottom: 16px;
+
+      .status-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        margin-right: 8px;
+
+        &.pending {
+          background: #f6ad55;
+        }
+
+        &.verified {
+          background: #48bb78;
+        }
+      }
+
+      .status-text {
+        font-size: 0.9rem;
+        color: #4a5568;
+        font-weight: 500;
+      }
+    }
+
+    .card-description {
+      margin-bottom: 20px;
+
+      p {
+        margin: 0;
+        font-size: 0.9rem;
+        color: #718096;
+        line-height: 1.5;
+      }
+    }
+
+    .card-actions {
+      .action-btn {
+        width: 100%;
+        padding: 12px 16px;
+        border: none;
+        border-radius: 8px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+
+        &.primary {
+          background: linear-gradient(135deg, #667eea, #764ba2);
+          color: white;
+
+          &:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+          }
+        }
+
+        &.secondary {
+          background: #f7fafc;
+          color: #4a5568;
+          border: 1px solid #e2e8f0;
+
+          &:hover {
+            background: #edf2f7;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+          }
+        }
+
+        .btn-icon {
+          font-size: 1rem;
+          transition: transform 0.3s ease;
+        }
+
+        &:hover .btn-icon {
+          transform: translateX(2px);
+        }
+      }
+    }
+  }
+}
+
+// Success message in card actions
+.card-actions.success {
+  .success-msg {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #48bb78, #38a169);
+    color: white;
+    border-radius: 12px;
+    font-weight: 600;
+    font-size: 14px;
+
+    .success-icon {
+      font-size: 18px;
+      font-weight: bold;
+    }
+  }
+}
+
+// Quick Actions Card
+.quick-actions-card {
+  .card-icon {
+    background: linear-gradient(135deg, #4299e1, #3182ce);
+  }
+
+  .actions-icon {
+    color: white;
+  }
+
+  .action-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+
+    .action-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 16px;
+      border-radius: 8px;
+      background: #f7fafc;
+      cursor: pointer;
+      transition: all 0.3s ease;
+
+      &:hover {
+        background: #edf2f7;
+        transform: translateY(-2px);
+      }
+
+      .action-icon {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+      }
+
+      span {
+        font-size: 0.8rem;
+        color: #4a5568;
+        font-weight: 500;
+        text-align: center;
+      }
+    }
+  }
+}
+
+// Account Summary Card
+.account-summary-card {
+  .card-icon {
+    background: linear-gradient(135deg, #48bb78, #38a169);
+  }
+
+  .summary-icon {
+    color: white;
+  }
+
+  .summary-stats {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    margin-bottom: 20px;
+
+    .stat-item {
+      text-align: center;
+      padding: 16px;
+      background: #f7fafc;
+      border-radius: 8px;
+
+      .stat-value {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 4px;
+      }
+
+      .stat-label {
+        font-size: 0.8rem;
+        color: #718096;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .summary-note {
+    p {
+      margin: 0;
+      font-size: 0.9rem;
+      color: #718096;
+      text-align: center;
+      font-style: italic;
+    }
+  }
+}
+
+// Security Card
+.security-card {
+  .card-icon {
+    background: linear-gradient(135deg, #f56565, #e53e3e);
+  }
+
+  .security-icon {
+    color: white;
+  }
+
+  .security-features {
+    margin-bottom: 20px;
+
+    .security-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+
+      .security-status {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        margin-right: 12px;
+
+        &.verified {
+          background: #48bb78;
+        }
+
+        &.pending {
+          background: #f6ad55;
+        }
+      }
+
+      span {
+        font-size: 0.9rem;
+        color: #4a5568;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+// Footer
+.footer {
+  background: #2d3748;
+  color: white;
+  padding: 40px 20px;
+  margin-top: 60px;
+
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    p {
+      margin: 0;
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 24px;
+
+      a {
+        color: white;
+        text-decoration: none;
+        font-size: 0.9rem;
+        opacity: 0.8;
+        transition: opacity 0.3s ease;
+
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 768px) {
+  .banner-section {
+    padding: 40px 20px;
+
+    .banner-title {
+      font-size: 2.5rem;
+    }
+
+    .banner-subtitle {
+      font-size: 1.1rem;
+    }
+
+    .banner-features {
+      gap: 24px;
+    }
+  }
+
+  .main-content {
+    padding: 24px 16px;
+  }
+
+  .content-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .kyc-card,
+  .quick-actions-card,
+  .account-summary-card,
+  .security-card {
+    padding: 20px;
+  }
+
+  .quick-actions-card .action-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+  }
+
+  .account-summary-card .summary-stats {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .footer .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .banner-title {
+    font-size: 2rem;
+  }
+
+  .banner-features {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .quick-actions-card .action-grid {
+    grid-template-columns: 1fr;
+  }
+}

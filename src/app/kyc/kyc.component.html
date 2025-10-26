@@ -1,0 +1,124 @@
+<div class="kyc-container">
+    <div class="kyc-card">
+        <!-- Header -->
+        <div class="kyc-header">
+            <button class="back-btn" (click)="goBack()">
+                <span class="back-icon">←</span>
+                Back to Home
+            </button>
+            <div class="header-content">
+                <h1>KYC Verification</h1>
+                <p>Complete your identity verification to unlock all banking features</p>
+            </div>
+        </div>
+
+        <!-- Success Message -->
+        <div *ngIf="showSuccessMessage" class="success-message">
+            <div class="success-icon">✓</div>
+            <h3>KYC Submitted Successfully!</h3>
+            <p>{{ successMessage }}</p>
+            <p class="redirect-text">Redirecting to home page...</p>
+        </div>
+
+        <!-- Error Message -->
+        <div *ngIf="errorMessage" class="error-message" (click)="clearError()">
+            <div class="error-icon">⚠</div>
+            <p>{{ errorMessage }}</p>
+            <span class="close-btn">×</span>
+        </div>
+
+        <!-- KYC Form -->
+        <form *ngIf="!showSuccessMessage" (ngSubmit)="onSubmit()" class="kyc-form">
+            <!-- Personal Information Section -->
+            <div class="form-section">
+                <h3 class="section-title">
+                    <span class="section-icon">👤</span>
+                    Personal Information
+                </h3>
+
+                <div class="form-group">
+                    <label for="aadhar">Aadhar Number *</label>
+                    <input id="aadhar" type="text" [(ngModel)]="aadharNumber" name="aadharNumber"
+                        placeholder="Enter 12-digit Aadhar number" class="form-input" maxlength="12"
+                        [class.error]="errorMessage && !aadharNumber.trim()" />
+                    <small class="field-hint">Enter your 12-digit Aadhar number without spaces</small>
+                </div>
+
+                <div class="form-group">
+                    <label for="pan">PAN Number *</label>
+                    <input id="pan" type="text" [(ngModel)]="panNumber" name="panNumber"
+                        placeholder="Enter PAN number (e.g., ABCDE1234F)" class="form-input" maxlength="10"
+                        style="text-transform: uppercase" [class.error]="errorMessage && !panNumber.trim()" />
+                    <small class="field-hint">Enter your 10-character PAN number</small>
+                </div>
+            </div>
+
+            <!-- Document Upload Section -->
+            <div class="form-section">
+                <h3 class="section-title">
+                    <span class="section-icon">📄</span>
+                    Document Upload
+                </h3>
+
+                <div class="form-group">
+                    <label for="documents">Supporting Documents (Optional)</label>
+                    <div class="file-upload-area">
+                        <input id="documents" type="file" (change)="onFileSelected($event)"
+                            accept=".pdf,.doc,.docx,.jpg,.jpeg,.png" multiple class="file-input" />
+                        <div class="upload-placeholder">
+                            <div class="upload-icon">📁</div>
+                            <div class="upload-text">
+                                <p>Click to upload documents or drag and drop</p>
+                                <small>PDF, DOC, DOCX, JPG, PNG files (Max 10MB each)</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Selected Files List -->
+                <div *ngIf="selectedFiles.length > 0" class="selected-files">
+                    <h4>Selected Files:</h4>
+                    <div class="file-list">
+                        <div *ngFor="let file of selectedFiles; let i = index" class="file-item">
+                            <div class="file-info">
+                                <span class="file-icon">📄</span>
+                                <span class="file-name">{{ file.name }}</span>
+                                <span class="file-size">({{ formatFileSize(file.size) }})</span>
+                            </div>
+                            <button type="button" class="remove-file-btn" (click)="removeFile(i)">
+                                ×
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Information Notice -->
+            <div class="info-notice">
+                <div class="notice-icon">ℹ️</div>
+                <div class="notice-content">
+                    <h4>Important Information</h4>
+                    <ul>
+                        <li>All information provided will be verified by our team</li>
+                        <li>Documents should be clear and readable</li>
+                        <li>Processing may take 1-2 business days</li>
+                        <li>You will be notified once verification is complete</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-actions">
+                <button type="submit" class="submit-btn" [disabled]="isLoading" [class.loading]="isLoading">
+                    <span *ngIf="!isLoading">Submit KYC Verification</span>
+                    <span *ngIf="isLoading" class="loading-spinner">
+                        <div class="spinner"></div>
+                        Submitting...
+                    </span>
+                </button>
+
+
+            </div>
+        </form>
+    </div>
+</div>

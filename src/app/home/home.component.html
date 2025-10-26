@@ -1,0 +1,149 @@
+<div class="home-container">
+    <!-- Profile Dropdown -->
+    <div class="profile-container">
+        <app-profile-dropdown></app-profile-dropdown>
+    </div>
+
+    <!-- Banner Section -->
+    <div class="banner-section">
+        <div class="banner-content">
+            <h1 class="banner-title">Welcome to SmartBank</h1>
+            <p class="banner-subtitle">Your digital banking partner for a smarter financial future</p>
+            <div class="banner-features">
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <div class="content-grid">
+            <!-- KYC Verification Card -->
+            <div class="kyc-card" [class.completed]="kycStatus === 'completed'" (click)="navigateToKYC()">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <span class="kyc-icon">{{ kycStatus === 'completed' ? '✅' : '📋' }}</span>
+                    </div>
+                    <div class="card-title">
+                        <h3>KYC Verification</h3>
+                        <p>{{ kycStatus === 'completed' ? 'Identity verification completed' : 'Complete your identity
+                            verification' }}</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="status-indicator">
+                        <div class="status-dot" [class.pending]="kycStatus === 'pending'"
+                            [class.verified]="kycStatus === 'completed'"></div>
+                        <span class="status-text">{{ kycStatus === 'completed' ? 'Verification Completed' : 'Pending
+                            Verification' }}</span>
+                    </div>
+                    <div class="card-description">
+                        <p *ngIf="!hasValidKYC">
+                            Verify your identity by submitting your Aadhar and PAN details to unlock all banking
+                            features.
+                        </p>
+                        <p *ngIf="hasValidKYC && kycStatus === 'pending'">
+                            Your KYC is under review. Please wait for verification.
+                        </p>
+                        <p *ngIf="kycStatus === 'completed'">
+                            Your identity has been successfully verified. You can now create bank accounts and access
+                            all banking features.
+                        </p>
+                    </div>
+                    <div class="card-actions">
+                        <button class="action-btn primary" *ngIf="!hasValidKYC">
+                            Complete KYC
+                            <span class="btn-icon">→</span>
+                        </button>
+                        <button class="action-btn secondary" *ngIf="hasValidKYC && kycStatus === 'pending'">
+                            View Status
+                            <span class="btn-icon">→</span>
+                        </button>
+                        <div class="card-actions success" *ngIf="kycStatus === 'completed'">
+                            <div class="success-msg">
+                                <span class="success-icon">✓</span>
+                                Successfully Verified
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Creation Card -->
+            <div class="account-creation-card" (click)="navigateToAccountCreate()">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <span class="account-icon">🏦</span>
+                    </div>
+                    <div class="card-title">
+                        <h3>Create Bank Account</h3>
+                        <p>{{ accountStatus === 'created' ? 'Account already created' : 'Open your bank account' }}</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="status-indicator">
+                        <div class="status-dot" [class.pending]="accountStatus === 'not_created'"
+                            [class.verified]="accountStatus === 'created'"></div>
+                        <span class="status-text">
+                            {{ accountStatus === 'created' ? 'Account Created' : 'Ready to Create' }}
+                        </span>
+                    </div>
+                    <div class="card-description">
+                        <p *ngIf="accountStatus === 'not_created'">
+                            Create your bank account and start managing your finances with SmartBank.
+                        </p>
+                        <p *ngIf="accountStatus === 'created'">
+                            Your bank account is active and ready for transactions.
+                        </p>
+                    </div>
+                    <div class="card-actions">
+                        <button class="action-btn primary" *ngIf="accountStatus === 'not_created'">
+                            Create Account
+                            <span class="btn-icon">→</span>
+                        </button>
+                        <div class="card-actions success" *ngIf="accountStatus === 'created'">
+                            <div class="success-msg">
+                                <span class="success-icon">✓</span>
+                                Account created successfully!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Account Summary Card -->
+            <div class="account-summary-card">
+                <div class="card-header">
+                    <div class="card-icon">
+                        <span class="summary-icon">📈</span>
+                    </div>
+                    <div class="card-title">
+                        <h3>Account Summary</h3>
+                        <p>Your financial overview</p>
+                    </div>
+                </div>
+                <div class="card-content">
+                    <div class="summary-stats">
+                        <div class="stat-item">
+                            <div class="stat-value">₹{{ totalBalance | number:'1.2-2' }}</div>
+                            <div class="stat-label">Total Balance</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">{{ userAccounts.length }}</div>
+                            <div class="stat-label">Active Accounts</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-value">0</div>
+                            <div class="stat-label">Transactions</div>
+                        </div>
+                    </div>
+                    <div class="summary-note">
+                        <p *ngIf="accountStatus === 'not_created'">Complete KYC verification to activate your account
+                            and start banking.</p>
+                        <p *ngIf="accountStatus === 'created'">Your accounts are active and ready for transactions.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Security Card -->
+
+        </div>

@@ -1,0 +1,93 @@
+<div class="register-container">
+    <div class="register-card">
+        <div class="register-header">
+            <h2>Create Your Account</h2>
+            <p>Join our platform and start your journey</p>
+        </div>
+
+        <!-- Success Message -->
+        <div *ngIf="showSuccessMessage" class="success-message">
+            <div class="success-icon">✓</div>
+            <p>{{ successMessage }}</p>
+            <p class="redirect-text">Redirecting to login page...</p>
+        </div>
+
+        <!-- Error Message -->
+        <div *ngIf="errorMessage" class="error-message" (click)="clearError()">
+            <div class="error-icon">⚠</div>
+            <p>{{ errorMessage }}</p>
+            <span class="close-btn">×</span>
+        </div>
+
+        <!-- Registration Form -->
+        <form *ngIf="!showSuccessMessage" (ngSubmit)="onRegister()" class="register-form">
+            <div class="form-group">
+                <label for="fullname">Full Name *</label>
+                <input id="fullname" type="text" [(ngModel)]="fullname" name="fullname"
+                    placeholder="Enter your full name" class="form-input"
+                    [class.error]="errorMessage && !fullname.trim()" />
+            </div>
+
+            <div class="form-group">
+                <label for="email">Email Address *</label>
+                <input id="email" type="email" [(ngModel)]="email_id" name="email_id"
+                    placeholder="Enter your email address" class="form-input"
+                    [class.error]="errorMessage && !email_id.trim()" />
+            </div>
+
+            <div class="form-group">
+                <label for="password">Password *</label>
+                <input id="password" type="password" [(ngModel)]="password" name="password"
+                    placeholder="Create a strong password" class="form-input"
+                    [class.error]="errorMessage && !password.trim()" />
+                <small class="password-hint">Minimum 6 characters</small>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="place">Place *</label>
+                    <input id="place" type="text" [(ngModel)]="place" name="place" placeholder="Enter your place"
+                        class="form-input" [class.error]="errorMessage && !place.trim()" />
+                </div>
+
+                <div class="form-group">
+                    <label for="location">Location *</label>
+                    <input id="location" type="text" [(ngModel)]="location" name="location"
+                        placeholder="Enter your location" class="form-input"
+                        [class.error]="errorMessage && !location.trim()" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="state">State *</label>
+                <input id="state" type="text" [(ngModel)]="state" name="state" placeholder="Enter your state"
+                    class="form-input" [class.error]="errorMessage && !state.trim()" />
+            </div>
+
+            <div class="form-group">
+                <label for="profile-picture">KYC DOCX</label>
+                <div class="file-upload">
+                    <input id="profile-picture" type="file" (change)="onFileSelected($event)" accept="image/*"
+                        class="file-input" />
+                    <label for="profile-picture" class="file-label">
+                        <span class="file-text">
+                            {{ selectedFile ? selectedFile.name : 'Choose pdf docx' }}
+                        </span>
+                    </label>
+                </div>
+            </div>
+
+            <button type="submit" class="register-btn" [disabled]="isLoading" [class.loading]="isLoading">
+                <span *ngIf="!isLoading">Create Account</span>
+                <span *ngIf="isLoading" class="loading-spinner">
+                    <div class="spinner"></div>
+                    Creating Account...
+                </span>
+            </button>
+        </form>
+
+        <div class="login-link">
+            <p>Already have an account? <a routerLink="/auth/login">Sign in here</a></p>
+        </div>
+    </div>
+</div>
