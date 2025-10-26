@@ -1,5 +1,5 @@
 
-#  Hackathon Bank – Fullstack Banking App
+#  SmartBank
 
 A demo-ready **banking application** built with **FastAPI (Python)** for the backend and **Angular** for the frontend.  
 It supports **user registration, KYC verification, and account creation** with proper database normalization and audit-friendly design.
