@@ -1,31 +1,27 @@
-SMARTBANK 
+# Frontend
 
-A demo-ready banking application built with FastAPI (Python) for the backend and Angular for the frontend. It supports user registration, KYC verification, and account creation with proper database normalization and audit-friendly design.
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.0.
 
-Components
-RegisterComponent → user signup form
+## Development server
 
-KycComponent → Aadhaar, PAN, and file upload
+Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
-AccountCreateComponent → choose account type, enter deposit, create account
+## Code scaffolding
 
-API Integration
-Uses Angular HttpClient to call FastAPI endpoints
+Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-Handles validation and error messages
+## Build
 
-Redirects after successful actions
+Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-How to Run
+## Running unit tests
 
-**Backend**
-cd backend
-python -m venv backendvenv
-backendvenv\Scripts\activate  
-pip install -r requirements.txt
-uvicorn main:app --reload
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-**Frontend**
-cd frontend
-npm install
-ng serve
+## Running end-to-end tests
+
+Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+
+## Further help
+
+To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
